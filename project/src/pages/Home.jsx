@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -23,6 +23,8 @@ export function Home() {
   const { getTrendingMemes, memes } = useMemeStore()
   const [trendingMemes, setTrendingMemes] = useState([])
   const [terminalLines, setTerminalLines] = useState([])
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     setTrendingMemes(memes.slice(0, 3))
@@ -102,7 +104,7 @@ export function Home() {
                   variant="primary"
                   size="lg"
                   glitch
-                  onClick={() => window.location.href = '/register'}
+                  onClick={() => navigate('/register')}
                 >
                   JACK IN NOW
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -110,7 +112,7 @@ export function Home() {
                 <CyberButton
                   variant="secondary"
                   size="lg"
-                  onClick={() => window.location.href = '/explore'}
+                  onClick={() => navigate('/explore')}
                 >
                   EXPLORE MATRIX
                 </CyberButton>
@@ -249,7 +251,7 @@ export function Home() {
               variant="primary"
               size="lg"
               glitch
-              onClick={() => window.location.href = '/explore'}
+              onClick={() => navigate('/explore')}
             >
               EXPLORE ALL MEMES
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -278,7 +280,7 @@ export function Home() {
               variant="primary"
               size="lg"
               glitch
-              onClick={() => window.location.href = '/register'}
+              onClick={() => navigate('/register')}
             >
               JACK INTO THE MATRIX
               <ArrowRight className="ml-2 h-5 w-5" />
