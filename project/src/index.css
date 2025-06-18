@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-cyber-blue/20;
+  }
+  
+  body {
+    @apply bg-cyber-darker text-cyber-blue font-mono;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+      linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+    background-attachment: fixed;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-cyber-dark;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cyber-pink rounded-full;
+    box-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cyber-blue;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+  }
+  
+  /* Selection */
+  ::selection {
+    @apply bg-cyber-pink/30 text-cyber-blue;
+  }
+}
+
+@layer components {
+  .cyber-btn {
+    @apply relative inline-flex items-center justify-center px-6 py-3 font-mono font-semibold text-sm uppercase tracking-wider transition-all duration-300 overflow-hidden;
+    @apply border border-current bg-transparent;
+    @apply hover:shadow-neon focus:outline-none focus:shadow-neon;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+    background-size: 200% 200%;
+    background-position: 100% 0;
+  }
+  
+  .cyber-btn:hover {
+    background-position: 0 100%;
+    animation: glitch 0.3s ease-in-out;
+  }
+  
+  .cyber-btn-primary {
+    @apply cyber-btn text-cyber-pink border-cyber-pink;
+  }
+  
+  .cyber-btn-secondary {
+    @apply cyber-btn text-cyber-blue border-cyber-blue;
+  }
+  
+  .cyber-btn-accent {
+    @apply cyber-btn text-cyber-green border-cyber-green;
+  }
+  
+  .cyber-input {
+    @apply w-full px-4 py-3 bg-cyber-dark/50 border border-cyber-blue/30 rounded-none text-cyber-blue placeholder-cyber-blue/50 font-mono;
+    @apply focus:border-cyber-pink focus:shadow-neon focus:outline-none transition-all duration-300;
+    @apply backdrop-blur-sm;
+  }
+  
+  .cyber-card {
+    @apply bg-cyber-dark/80 border border-cyber-blue/20 backdrop-blur-sm relative overflow-hidden;
+    @apply hover:border-cyber-pink/50 transition-all duration-300;
+    background-image: linear-gradient(45deg, transparent 49%, rgba(0,255,255,0.03) 50%, transparent 51%);
+  }
+  
+  .cyber-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-cyber-blue/5 to-transparent;
+    @apply translate-x-[-100%] transition-transform duration-700;
+  }
+  
+  .cyber-card:hover::before {
+    @apply translate-x-[100%];
+  }
+  
+  .glitch-text {
+    @apply relative inline-block;
+  }
+  
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    @apply absolute top-0 left-0 w-full h-full;
+  }
+  
+  .glitch-text::before {
+    @apply text-cyber-pink;
+    animation: glitch 2s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  }
+  
+  .glitch-text::after {
+    @apply text-cyber-blue;
+    animation: glitch 2s infinite reverse;
+    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  }
+  
+  .neon-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-cyber-pink to-cyber-blue;
+    text-shadow: 0 0 10px currentColor;
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+  }
+  
+  .terminal-window {
+    @apply bg-cyber-darker border border-cyber-green/30 rounded-none relative;
+    box-shadow: 
+      0 0 20px rgba(0, 255, 65, 0.2),
+      inset 0 0 20px rgba(0, 255, 65, 0.05);
+  }
+  
+  .terminal-header {
+    @apply bg-cyber-dark border-b border-cyber-green/30 px-4 py-2 flex items-center space-x-2;
+  }
+  
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+  
+  .scan-line {
+    @apply absolute inset-0 pointer-events-none;
+    background: linear-gradient(transparent 40%, rgba(0, 255, 255, 0.1) 50%, transparent 60%);
+    animation: scan-line 3s linear infinite;
+  }
+  
+  .matrix-bg {
+    @apply absolute inset-0 overflow-hidden pointer-events-none opacity-10;
+  }
+  
+  .matrix-char {
+    @apply absolute text-cyber-green font-mono text-sm;
+    animation: matrix 20s linear infinite;
+  }
+  
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(0,255,255,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .hologram {
+    @apply relative;
+    background: linear-gradient(45deg, transparent 30%, rgba(0,255,255,0.1) 50%, transparent 70%);
+    background-size: 200% 200%;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .hologram::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-b from-transparent via-cyber-blue/10 to-transparent;
+    animation: scan-line 2s linear infinite;
+  }
+  
+  .data-stream {
+    @apply font-mono text-xs text-cyber-green/70;
+    animation: typing 3s steps(40, end), blink 1s infinite step-end;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid;
+  }
+  
+  .cyber-progress {
+    @apply relative bg-cyber-dark border border-cyber-blue/30 h-2 overflow-hidden;
+  }
+  
+  .cyber-progress-bar {
+    @apply h-full bg-gradient-to-r from-cyber-pink to-cyber-blue relative;
+    box-shadow: 0 0 10px currentColor;
+  }
+  
+  .cyber-progress-bar::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent;
+    animation: scan-line 1s linear infinite;
+  }
+}
+
+@layer utilities {
+  .text-shadow-neon {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+  
+  .border-neon {
+    border-color: currentColor;
+    box-shadow: 0 0 10px currentColor, inset 0 0 10px rgba(255,255,255,0.1);
+  }
+  
+  .bg-cyber-noise {
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+  
+  .animate-glitch-fast {
+    animation: glitch 0.5s infinite;
+  }
+  
+  .animate-flicker {
+    animation: flicker 0.15s infinite linear;
+  }
+}
+
+/* Hack: Matrix rain effect */
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+.matrix-column {
+  position: absolute;
+  top: -100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: #00ff41;
+  animation: matrix-fall linear infinite;
+}
+
+@keyframes matrix-fall {
+  0% {
+    transform: translateY(-100px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Hack: Terminal typing effect */
+.terminal-typing::after {
+  content: '█';
+  animation: blink 1s infinite;
+}
+
+/* Hack: Glitch hover effect */
+.glitch-hover:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+.glitch-hover:hover::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 2px;
+  color: #ff006e;
+  background: transparent;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: glitch-anim 0.3s infinite linear alternate-reverse;
+}
+
+.glitch-hover:hover::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: -2px;
+  color: #00ffff;
+  background: transparent;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: glitch-anim2 0.3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(64px, 9999px, 66px, 0); }
+  5% { clip: rect(30px, 9999px, 36px, 0); }
+  10% { clip: rect(87px, 9999px, 91px, 0); }
+  15% { clip: rect(10px, 9999px, 15px, 0); }
+  20% { clip: rect(69px, 9999px, 74px, 0); }
+  25% { clip: rect(41px, 9999px, 48px, 0); }
+  30% { clip: rect(2px, 9999px, 8px, 0); }
+  35% { clip: rect(76px, 9999px, 82px, 0); }
+  40% { clip: rect(23px, 9999px, 29px, 0); }
+  45% { clip: rect(54px, 9999px, 60px, 0); }
+  50% { clip: rect(17px, 9999px, 22px, 0); }
+  55% { clip: rect(33px, 9999px, 39px, 0); }
+  60% { clip: rect(71px, 9999px, 77px, 0); }
+  65% { clip: rect(6px, 9999px, 12px, 0); }
+  70% { clip: rect(45px, 9999px, 51px, 0); }
+  75% { clip: rect(28px, 9999px, 34px, 0); }
+  80% { clip: rect(62px, 9999px, 68px, 0); }
+  85% { clip: rect(14px, 9999px, 20px, 0); }
+  90% { clip: rect(37px, 9999px, 43px, 0); }
+  95% { clip: rect(79px, 9999px, 85px, 0); }
+  100% { clip: rect(1px, 9999px, 7px, 0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(65px, 9999px, 69px, 0); }
+  5% { clip: rect(31px, 9999px, 37px, 0); }
+  10% { clip: rect(88px, 9999px, 92px, 0); }
+  15% { clip: rect(11px, 9999px, 16px, 0); }
+  20% { clip: rect(70px, 9999px, 75px, 0); }
+  25% { clip: rect(42px, 9999px, 49px, 0); }
+  30% { clip: rect(3px, 9999px, 9px, 0); }
+  35% { clip: rect(77px, 9999px, 83px, 0); }
+  40% { clip: rect(24px, 9999px, 30px, 0); }
+  45% { clip: rect(55px, 9999px, 61px, 0); }
+  50% { clip: rect(18px, 9999px, 23px, 0); }
+  55% { clip: rect(34px, 9999px, 40px, 0); }
+  60% { clip: rect(72px, 9999px, 78px, 0); }
+  65% { clip: rect(7px, 9999px, 13px, 0); }
+  70% { clip: rect(46px, 9999px, 52px, 0); }
+  75% { clip: rect(29px, 9999px, 35px, 0); }
+  80% { clip: rect(63px, 9999px, 69px, 0); }
+  85% { clip: rect(15px, 9999px, 21px, 0); }
+  90% { clip: rect(38px, 9999px, 44px, 0); }
+  95% { clip: rect(80px, 9999px, 86px, 0); }
+  100% { clip: rect(2px, 9999px, 8px, 0); }
+}
