@@ -9,7 +9,7 @@ class SocketService {
   connect() {
     if (this.socket && this.isConnected) return this.socket;
     // Replace with your backend socket.io server URL
-    this.socket = io('https://meme-hustle-backend.vercel.app', {
+    this.socket = io('https://meme-hustle-be.onrender.com/', {
       transports: ['websocket'],
       withCredentials: true
     });

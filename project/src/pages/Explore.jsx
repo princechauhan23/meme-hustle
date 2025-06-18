@@ -45,7 +45,7 @@ export function Explore() {
 
   const fetchAllMemes = async () => {
     try {
-      const res = await fetch('https://meme-hustle-backend.vercel.app/api/memes/', {
+      const res = await fetch('https://meme-hustle-be.onrender.com/api/memes/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

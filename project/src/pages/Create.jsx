@@ -128,7 +128,7 @@ export function Create() {
     }
 
     try {
-      const response = await fetch('https://meme-hustle-backend.vercel.app/api/memes/', {
+      const response = await fetch('https://meme-hustle-be.onrender.com/api/memes/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

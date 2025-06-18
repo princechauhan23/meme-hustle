@@ -26,7 +26,7 @@ export function Login() {
     setIsLoading(true)
 
     try {
-      const response = await fetch('https://meme-hustle-backend.vercel.app/api/auth/login', {
+      const response = await fetch('https://meme-hustle-be.onrender.com/api/auth/login', {
         method: 'POST',
         body: JSON.stringify(formData),
         headers: {

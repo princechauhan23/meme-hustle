@@ -69,7 +69,7 @@ export function MemeDuel() {
       timer: new Date(timer * 1000).toISOString(),
       host: user.id,
     };
-    const response = await fetch('https://meme-hustle-backend.vercel.app/api/memeDuel/start', {
+    const response = await fetch('https://meme-hustle-be.onrender.com/api/memeDuel/start', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
