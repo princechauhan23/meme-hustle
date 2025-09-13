@@ -1,6 +1,6 @@
-# MemeHustle Backend
+# CyberMeme Exchange - HACK THE MEME MATRIX
 
-A robust Node.js Express.js backend for the MemeHustle platform with real-time features, AI integration, and comprehensive API endpoints.
+A robust CyberMeme Exchange platform with real-time features, AI integration, and comprehensive API endpoints.
 
 ## 🚀 Features
 
@@ -45,7 +45,6 @@ CORS_ORIGIN=http://localhost:3000
 
 4. **Database setup:**
    - Set up your Supabase project
-   - Run the migration files in the `supabase/migrations/` directory
    - Click "Connect to Supabase" in the UI to configure your database
 
 ## 🎯 API Endpoints
@@ -144,7 +143,7 @@ npm run dev
 
 ### Production
 ```bash
-npm start
+npm run dev
 ```
 
 ### Authentication
@@ -157,7 +156,7 @@ Available demo users: 1-5 (mememaster, vibelord, stonksguy, cryptoqueen, nftnoob
 
 ## 📊 Monitoring
 
-- Health check: `GET /health`
+- Health check: `GET /`
 - Cache statistics available via CacheService
 - Comprehensive logging with Winston
 - Real-time connection monitoring
